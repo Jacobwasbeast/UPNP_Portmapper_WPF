@@ -8,8 +8,8 @@ Set IP Address: Set and store the IP address used for the port mappings.
 Persistent Configuration: Save and load the configuration, ensuring that all settings are retained between sessions.
 Intuitive Interface: Simple and easy-to-use graphical interface built with WPF.
 ## Requirements
-<p>.NET Framework 8.0/6.0 works too<br>
- Visual Studio 2019/Rider (for development)<br>
+<p>.NET Framework 8.0/6.0 works too<br><br>
+ Visual Studio 2019/Rider (for development)<br><br>
  Newtonsoft.Json NuGet package for JSON serialization</p>
  
 [Mono.nat](https://github.com/alanmcgovern/Mono.Nat)
