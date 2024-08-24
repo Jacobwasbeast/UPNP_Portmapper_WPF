@@ -26,7 +26,7 @@ Remove a Port Mapping: Select a port mapping from the list, and click "Remove."
 Save Configuration: Configuration is automatically saved after every change.
 Load Configuration: The configuration is automatically loaded on application startup.
 Configuration File
-The configuration is saved in a config.json file located in the application's directory. This file contains all port mappings and the IP address, serialized in JSON format.
+The configuration is saved in a config.json file located in the application's directory. This file contains all port mappings, serialized in JSON format.
 
 # Contributing
 If you would like to contribute to the project, feel free to fork the repository and submit pull requests. Bug reports and feature requests are also welcome.
