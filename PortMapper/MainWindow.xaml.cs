@@ -16,22 +16,11 @@ namespace PortMapper
         {
             InitializeComponent();
             LoadConfig();
-            // check to see if the app has admin rights
-            if (!IsAdministrator())
-            {
-                MessageBox.Show("This application runs better with administrator rights. Please restart the application as an administrator if you experience issues");
-            }
             PortMappingList.ItemsSource = _config.PortMappings;
             Trace.WriteLine("Starting PortMapper");
             NatUtility.DeviceFound += DeviceFound;
             NatUtility.StartDiscovery ();
             Trace.WriteLine("Discovery started");
-        }
-        public static bool IsAdministrator()
-        {
-            var identity = WindowsIdentity.GetCurrent();
-            var principal = new WindowsPrincipal(identity);
-            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
         readonly SemaphoreSlim locker = new SemaphoreSlim (1, 1);
         private async void DeviceFound(object sender, DeviceEventArgs args)
