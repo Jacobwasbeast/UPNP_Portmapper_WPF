@@ -24,7 +24,6 @@ Launch the Application: Open the executable or run the application from Visual S
 Add a Port Mapping: Click the "Add" button, fill in the details, and save.
 Edit a Port Mapping: Select a port mapping from the list, click "Edit," modify the details, and save.
 Remove a Port Mapping: Select a port mapping from the list, and click "Remove."
-Set IP Address: Click the "Settings" button, enter the desired IP address, and save.
 Save Configuration: Configuration is automatically saved after every change.
 Load Configuration: The configuration is automatically loaded on application startup.
 Configuration File
