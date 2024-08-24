@@ -10,7 +10,7 @@ Intuitive Interface: Simple and easy-to-use graphical interface built with WPF.
 ## Requirements
 <p>.NET Framework 8.0/6.0 works too<br>
  Visual Studio 2019/Rider (for development)<br>
- Newtonsoft.Json NuGet package for JSON serialization <br></p>
+ Newtonsoft.Json NuGet package for JSON serialization</p>
  
 [Mono.nat](https://github.com/alanmcgovern/Mono.Nat)
  
