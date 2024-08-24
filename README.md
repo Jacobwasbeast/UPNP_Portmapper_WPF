@@ -3,8 +3,7 @@
 The Port Mapper WPF Application is a straightforward tool designed to help users manage port mappings with an easy-to-use graphical interface. It allows you to set an IP address, add, edit, and remove port mappings, and save/load these settings from a JSON configuration file.
 
 # Features
-## Manage Port Mappings: Add, edit, and remove port mappings, including fields for Name, Internal Port, External Port, Protocol, and IP Address.
-Set IP Address: Set and store the IP address used for the port mappings.
+## Manage Port Mappings: Add, edit, and remove port mappings, including fields for Name, Internal Port, External Port, Protocol.
 Persistent Configuration: Save and load the configuration, ensuring that all settings are retained between sessions.
 Intuitive Interface: Simple and easy-to-use graphical interface built with WPF.
 ## Requirements
