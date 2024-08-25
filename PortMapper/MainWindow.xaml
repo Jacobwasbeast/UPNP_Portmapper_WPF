@@ -1,8 +1,106 @@
 ﻿<Window x:Class="PortMapper.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wpf="http://schemas.fontawesome.com/icons/"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         Title="Port Mapper" Height="450" Width="800">
-    <Grid>
+    <Window.Resources>
+        <!-- Load theme resources dynamically -->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="DarkTheme.xaml"/> <!-- Default theme -->
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Define common styles for controls -->
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Background" Value="{StaticResource ButtonBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource BackgroundBrush}"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Height" Value="60"/>
+                <Setter Property="Width" Value="200"/>
+                <Setter Property="FontFamily" Value="{StaticResource SecondaryFont}"/>
+            </Style>
+
+            <Style x:Key="HeaderButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource BackgroundBrush}"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Width" Value="50"/>
+                <Setter Property="Height" Value="50"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="FontFamily" Value="{StaticResource SecondaryFont}"/>
+            </Style>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}"/>
+                <Setter Property="FontFamily" Value="{StaticResource SecondaryFont}"/>
+            </Style>
+
+            <Style TargetType="DataGrid">
+                <Setter Property="AutoGenerateColumns" Value="False"/>
+                <Setter Property="CanUserAddRows" Value="False"/>
+                <Setter Property="CanUserDeleteRows" Value="False"/>
+                <Setter Property="CanUserResizeColumns" Value="True"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="RowHeight" Value="40"/>
+                <Setter Property="ColumnHeaderHeight" Value="50"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+                <Setter Property="AlternatingRowBackground" Value="{StaticResource SecondaryBrush}"/>
+                <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
+                <Setter Property="BorderBrush" Value="{StaticResource SecondaryBrush}"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="FontFamily" Value="{StaticResource SecondaryFont}"/>
+            </Style>
+
+            <Style TargetType="DataGridColumnHeader">
+                <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+                <Setter Property="Foreground" Value="{StaticResource BackgroundBrush}"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="FontFamily" Value="{StaticResource SecondaryFont}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="DataGridColumnHeader">
+                            <Grid Background="{TemplateBinding Background}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter Grid.Column="0" VerticalAlignment="Center" Margin="10"/>
+                                <fa:ImageAwesome x:Name="SortIcon" Grid.Column="1" Width="16" Height="16"
+                                                 Foreground="{StaticResource BackgroundBrush}" Visibility="Collapsed"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="SortDirection" Value="{x:Null}">
+                                    <Setter TargetName="SortIcon" Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                                <Trigger Property="SortDirection" Value="Ascending">
+                                    <Setter TargetName="SortIcon" Property="Icon" Value="ArrowUp"/>
+                                    <Setter TargetName="SortIcon" Property="Visibility" Value="Visible"/>
+                                </Trigger>
+                                <Trigger Property="SortDirection" Value="Descending">
+                                    <Setter TargetName="SortIcon" Property="Icon" Value="ArrowDown"/>
+                                    <Setter TargetName="SortIcon" Property="Visibility" Value="Visible"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Background="{StaticResource BackgroundBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -14,36 +112,48 @@
         </Grid.ColumnDefinitions>
 
         <!-- Header -->
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Port Mapper" FontSize="24" FontWeight="Bold" 
-                   HorizontalAlignment="Center" Margin="10"/>
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Text="Made by Jacobwasbeast" FontSize="12" FontWeight="Bold" 
-                   HorizontalAlignment="Right" Margin="10"/>
+        <DockPanel Background="{StaticResource AccentBrush}" Height="60" HorizontalAlignment="Stretch" LastChildFill="True">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                <TextBlock Text="PORT MAPPER" FontSize="40" FontWeight="Bold" Foreground="{StaticResource BackgroundBrush}"
+                           VerticalAlignment="Center" Margin="10" FontFamily="{StaticResource PrimaryFont}"/>
+                <TextBlock Text="v1.0.0" FontSize="20" FontWeight="Bold" Foreground="{StaticResource BackgroundBrush}"
+                           VerticalAlignment="Center" Margin="10,0,0,0" FontFamily="{StaticResource PrimaryFont}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right" Margin="0,0,10,0">
+                <Button Style="{StaticResource HeaderButtonStyle}" Click="AddButton_Click">
+                    <fa:ImageAwesome Icon="Plus" Width="25" Height="25"/>
+                </Button>
+                <Button Style="{StaticResource HeaderButtonStyle}" Click="EditButton_Click">
+                    <fa:ImageAwesome Icon="Edit" Width="25" Height="25"/>
+                </Button>
+                <Button Style="{StaticResource HeaderButtonStyle}" Click="RemoveButton_Click">
+                    <fa:ImageAwesome Icon="Trash" Width="25" Height="25"/>
+                </Button>
+                <!-- <Button Style="{StaticResource HeaderButtonStyle}" Click="SettingsButton_Click" Width="100" Height="30" Margin="5"> -->
+                <!--     <fa:ImageAwesome Icon="Cog" Width="25" Height="25"/> -->
+                <!-- </Button> -->
+            </StackPanel>
+        </DockPanel>
 
         <!-- Port Mapping List -->
-        <ListView Grid.Row="1" Grid.Column="0" Name="PortMappingList" Margin="10" SelectionMode="Single">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="100"/>
-                    <GridViewColumn Header="Internal Port" DisplayMemberBinding="{Binding InternalPort}" Width="100"/>
-                    <GridViewColumn Header="External Port" DisplayMemberBinding="{Binding ExternalPort}" Width="100"/>
-                    <GridViewColumn Header="Protocol" DisplayMemberBinding="{Binding Protocol}" Width="100"/>
-                    <GridViewColumn Header="IP Address" DisplayMemberBinding="{Binding IPAddress}" Width="120"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="PortMappingList" ItemsSource="{Binding PortMappings}"
+                  AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" GridLinesVisibility="All" BorderThickness="1" BorderBrush="{StaticResource SecondaryBrush}" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" MinWidth="100"/>
+                <DataGridTextColumn Header="Internal Port" Binding="{Binding InternalPort}" Width="*" MinWidth="100"/>
+                <DataGridTextColumn Header="External Port" Binding="{Binding ExternalPort}" Width="*" MinWidth="100"/>
+                <DataGridTextColumn Header="Protocol" Binding="{Binding Protocol}" Width="*" MinWidth="100"/>
+                <DataGridTextColumn Header="IP Address" Binding="{Binding IPAddress}" Width="*" MinWidth="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
-        <!-- Add, Edit, Remove Buttons -->
-        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right" Margin="10">
-            <Button Name="AddButton" Content="Add" Width="100" Margin="5" Click="AddButton_Click"/>
-            <Button Name="EditButton" Content="Edit" Width="100" Margin="5" Click="EditButton_Click"/>
-            <Button Name="RemoveButton" Content="Remove" Width="100" Margin="5" Click="RemoveButton_Click"/>
-        </StackPanel>
-
-        <!-- Status Bar -->
-        <StatusBar Grid.Row="2" Grid.ColumnSpan="2">
-            <StatusBarItem>
-                <TextBlock Name="StatusText" Text="Ready" />
-            </StatusBarItem>
-        </StatusBar>
+        <!-- Footer -->
+        <DockPanel Grid.Row="2" Background="{StaticResource FooterBackgroundBrush}" Height="50">
+            <TextBlock DockPanel.Dock="Right" Text="Made by Jacobwasbeast" FontSize="20" FontWeight="Bold" Foreground="{StaticResource BackgroundBrush}"
+                       Margin="10,0" FontFamily="{StaticResource SecondaryFont}" VerticalAlignment="Center"/>
+            <TextBlock DockPanel.Dock="Left" Name="StatusText" Text="Ready" FontSize="20" FontWeight="Bold" Foreground="{StaticResource BackgroundBrush}"
+                       Margin="10" FontFamily="{StaticResource SecondaryFont}" VerticalAlignment="Center"/>
+        </DockPanel>
     </Grid>
 </Window>

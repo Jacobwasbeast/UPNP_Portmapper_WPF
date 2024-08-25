@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:Portmapper"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <FontFamily x:Key="PrimaryFont">./Fonts/WakandaPantherNmdVerRegular-p7qRr.ttf#Wakanda Panther Nmd Version</FontFamily>
+        <FontFamily x:Key="SecondaryFont">./Fonts/RobotoCondensed-Variable.ttf#Roboto Condensed</FontFamily>
+
     </Application.Resources>
 </Application>

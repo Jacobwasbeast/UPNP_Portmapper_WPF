@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Security.Principal;
 using System.Windows;
+using System.Windows.Controls;
 using Portmapper;
 using Mono.Nat;
 namespace PortMapper
@@ -11,6 +12,8 @@ namespace PortMapper
         public static NatProtocol _natProtocol;
         public static string _ipAddress;
         public static INatDevice _device;
+        private const string DarkTheme = "DarkTheme.xaml";
+        private const string LightTheme = "LightTheme.xaml";
 
         public MainWindow()
         {
@@ -21,6 +24,7 @@ namespace PortMapper
             NatUtility.DeviceFound += DeviceFound;
             NatUtility.StartDiscovery ();
             Trace.WriteLine("Discovery started");
+            SetTheme(DarkTheme);
         }
         readonly SemaphoreSlim locker = new SemaphoreSlim (1, 1);
         private async void DeviceFound(object sender, DeviceEventArgs args)
@@ -232,9 +236,42 @@ namespace PortMapper
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
             var settingsWindow = new SettingsWindow();
+            settingsWindow.Owner = this;
             if (settingsWindow.ShowDialog() == true)
             {
                 SaveConfig();
+            }
+        }
+        
+        private void SetTheme(string themeUri)
+        {
+            ResourceDictionary newTheme = new ResourceDictionary { Source = new Uri(themeUri, UriKind.Relative) };
+
+            // Remove existing theme resource dictionaries
+            ResourceDictionary oldTheme = null;
+            foreach (var rd in this.Resources.MergedDictionaries)
+            {
+                if (rd.Source != null && (rd.Source.ToString().Contains(DarkTheme) || rd.Source.ToString().Contains(LightTheme)))
+                {
+                    oldTheme = rd;
+                    break;
+                }
+            }
+
+            if (oldTheme != null)
+            {
+                this.Resources.MergedDictionaries.Remove(oldTheme);
+            }
+
+            // Add the new theme resource dictionary
+            this.Resources.MergedDictionaries.Add(newTheme);
+        }
+        
+        private void SwitchThemeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.Tag is string themeUri)
+            {
+                SetTheme(themeUri);
             }
         }
     }
