@@ -16,10 +16,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="font.ttf" />
-    </ItemGroup>
-
-    <ItemGroup>
       <None Remove="Fonts\WakandaPantherNmdVerRegular-p7qRr.ttf" />
       <Resource Include="Fonts\WakandaPantherNmdVerRegular-p7qRr.ttf">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
