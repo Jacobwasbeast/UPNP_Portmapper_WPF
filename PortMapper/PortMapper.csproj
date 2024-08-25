@@ -24,14 +24,6 @@
       <Resource Include="Fonts\WakandaPantherNmdVerRegular-p7qRr.ttf">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
-      <None Remove="Fonts\FiberRegular-5yadB.ttf" />
-      <Resource Include="Fonts\FiberRegular-5yadB.ttf">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
-      <None Remove="Fonts\NewAmsterdam-Regular.ttf" />
-      <Resource Include="Fonts\NewAmsterdam-Regular.ttf">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Resource>
       <None Remove="Fonts\RobotoCondensed-Variable.ttf" />
       <Resource Include="Fonts\RobotoCondensed-Variable.ttf">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
