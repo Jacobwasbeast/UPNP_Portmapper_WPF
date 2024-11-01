@@ -138,7 +138,7 @@
 
         <!-- Port Mapping List -->
         <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Name="PortMappingList" ItemsSource="{Binding PortMappings}"
-                  AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" GridLinesVisibility="All" BorderThickness="1" BorderBrush="{StaticResource SecondaryBrush}" >
+                  AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" GridLinesVisibility="All" BorderThickness="1" BorderBrush="{StaticResource PrimaryBrush}" AlternatingRowBackground="{StaticResource PrimaryBrush}" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" MinWidth="100"/>
                 <DataGridTextColumn Header="Internal Port" Binding="{Binding InternalPort}" Width="*" MinWidth="100"/>
